@@ -14,10 +14,10 @@ app.get('/', (req, res, next) => {
                 return next(err)
             }
             //res.text is html from urlHtml
-            var $ = cheerio.load(resource.text)
-            var items = []
+            let $ = cheerio.load(resource.text)
+            let items = []
             $('#topic_list .topic_title').each((i, element) => {
-                var $element = $(element)
+                let $element = $(element)
                 items.push({
                     title: $element.attr('title'),
                     href: $element.attr('href')
@@ -33,8 +33,8 @@ app.get('/async', (req, res, next) => {
             if (err) {
                 return console.error(err)
             }
-            var topicUrls = []
-            var $ = cheerio.load(resource.text)
+            let topicUrls = []
+            let $ = cheerio.load(resource.text)
             $('#topic_list .topic_title').each((index, element) => {
                 //element  对象   [object]
                 //${element} 对象数据   [data]
@@ -54,7 +54,7 @@ app.get('/async', (req, res, next) => {
         })
 })
 
-var async = (html, index) => {
+let async = (html, index) => {
     return new Promise((resolve, reject) => {
         let $ = cheerio.load(html)
         let title = $('.topic_full_title').text().trim()
